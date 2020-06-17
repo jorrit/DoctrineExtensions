@@ -5,6 +5,7 @@ namespace Gedmo\Mapping\Event\Adapter;
 use Doctrine\Common\EventArgs;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Event\LifecycleEventArgs;
+use Doctrine\Persistence\ObjectManager;
 use Gedmo\Exception\RuntimeException;
 use Gedmo\Mapping\Event\AdapterInterface;
 
@@ -168,15 +169,10 @@ class ODM implements AdapterInterface
     }
 
     /**
-     * Creates a ODM specific LifecycleEventArgs.
-     *
-     * @param object                                $document
-     * @param \Doctrine\ODM\MongoDB\DocumentManager $documentManager
-     *
-     * @return \Doctrine\ODM\MongoDB\Event\LifecycleEventArgs
+     * {@inheritdoc}
      */
-    public function createLifecycleEventArgsInstance($document, $documentManager)
+    public function createLifecycleEventArgsInstance($object, ObjectManager $objectManager)
     {
-        return new LifecycleEventArgs($document, $documentManager);
+        return new LifecycleEventArgs($object, $objectManager);
     }
 }

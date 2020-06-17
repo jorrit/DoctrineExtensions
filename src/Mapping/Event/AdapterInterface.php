@@ -4,6 +4,7 @@ namespace Gedmo\Mapping\Event;
 
 use Doctrine\Common\EventArgs;
 use Doctrine\ORM\UnitOfWork;
+use Doctrine\Persistence\ObjectManager;
 
 /**
  * Doctrine event adapter interface is used
@@ -147,4 +148,14 @@ interface AdapterInterface
      * @param string     $oid the object's OID
      */
     public function clearObjectChangeSet($uow, $oid);
+
+    /**
+     * Creates a ORM specific LifecycleEventArgs.
+     *
+     * @param object                              $object
+     * @param \Doctrine\Persistence\ObjectManager $objectManager
+     *
+     * @return \Doctrine\Persistence\Event\LifecycleEventArgs
+     */
+    public function createLifecycleEventArgsInstance($object, ObjectManager $objectManager);
 }
